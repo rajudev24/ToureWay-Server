@@ -21,11 +21,18 @@ async function run(){
         await client.connect();
         const database = client.db('ToureWay');
         const placesCollection = database.collection('places')
+        const imageCollection = database.collection('images')
 
         app.get('/places', async(req, res)=>{
             const cursor = placesCollection.find()
             const place = await cursor.toArray();
             res.send(place)
+        })
+
+        app.get('/images', async(req, res)=>{
+            const cursor = imageCollection.find();
+            const image = await cursor.toArray();
+            res.send(image)
         })
     }
     finally{
