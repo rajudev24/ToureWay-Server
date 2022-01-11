@@ -22,6 +22,7 @@ async function run(){
         const database = client.db('ToureWay');
         const placesCollection = database.collection('places')
         const imageCollection = database.collection('images')
+        const hotelsCollection = database.collection('hotels')
 
         app.get('/places', async(req, res)=>{
             const cursor = placesCollection.find()
@@ -33,6 +34,12 @@ async function run(){
             const cursor = imageCollection.find();
             const image = await cursor.toArray();
             res.send(image)
+        })
+
+        app.get('/hotels', async(req, res)=>{
+            const cursor = hotelsCollection.find();
+            const hotel = await cursor.toArray();
+            res.send(hotel)
         })
     }
     finally{
